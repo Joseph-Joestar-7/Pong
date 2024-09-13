@@ -98,3 +98,15 @@ void Pong::ProcessInput(float deltaTime) {
     }
 }
 
+void Pong::ResetBall() {
+    m_BallPos = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_BallVelocity = glm::vec3(0.5f, 0.5f, 0.0f); // Ball speed
+}
+
+void Pong::ResetPaddles() {
+    m_PaddleLeftPos = glm::vec3(-0.9f, 0.0f, 0.0f);
+    m_PaddleRightPos = glm::vec3(0.9f, 0.0f, 0.0f);
+}
+
+
+
