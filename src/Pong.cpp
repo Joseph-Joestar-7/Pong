@@ -107,6 +107,11 @@ void Pong::Render()
 
     m_Shader->bind();
 
+    if (m_GameOver) {
+        std::cout << "The winner is " << winner << "\n";
+        return; 
+    }
+
     glm::mat4 modelLeft = glm::translate(glm::mat4(1.0f), m_PaddleLeftPos);
     m_Shader->setUniformMat4f("u_Model", modelLeft);
     m_Shader->setUniform4f("uColor", 1.0f, 0.0f, 0.0f, 1.0f); // Red color
@@ -130,6 +135,9 @@ void Pong::Render()
 
 void Pong::ProcessInput(float deltaTime) {
 
+    if (m_GameOver && glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_ENTER) == GLFW_PRESS) { 
+        Restart(); //Press Enter to restart
+    }
 
     if (!m_GameOver)
     {
@@ -194,6 +202,12 @@ void Pong::CheckCollisions()
     if (m_BallPos.x + 0.05f >= 1.0f) {
         sc1++;
         ResetBall();
+    }
+
+    if (sc1 == 3 || sc2 == 3)
+    {
+        m_GameOver = true;
+        winner = (sc1 == 3) ? p1 : p2;
     }
     
 

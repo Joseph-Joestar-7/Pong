@@ -8,6 +8,7 @@
 #include "Shader.h"
 #include "VertexBufferLayout.h"
 #include <string>
+#include <iostream>
 
 #define GLM_ENABLE_EXPERIMENTAL
 
@@ -37,7 +38,6 @@ private:
     glm::mat4 m_Projection;
     glm::mat4 m_View;
 
-    bool m_GameOver;
 
     // Reset the Ball and Paddles
     void ResetBall();
@@ -51,6 +51,7 @@ public:
 
     std::string p1, p2, winner;
     int sc1, sc2;
+    bool m_GameOver;
 
 	void Init();
     void Restart();

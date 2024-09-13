@@ -43,6 +43,7 @@ int main(void)
     std::cin >> a;
     pong.p2 = a;
 
+
     float lastTime = (float)glfwGetTime();
 
     /* Loop until the user closes the window */
@@ -55,8 +56,12 @@ int main(void)
         /* Render here */
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
         pong.ProcessInput(deltaTime);
-        pong.Update(deltaTime);
-        pong.Render();
+
+        if (!pong.m_GameOver)
+        {
+            pong.Update(deltaTime);
+            pong.Render();
+        }
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
