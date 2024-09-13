@@ -86,6 +86,15 @@ void Pong::Init()
 
 }
 
+void Pong::Restart()
+{
+    sc1 = 0;
+    sc2 = 0;
+    m_GameOver = false;
+    ResetBall();
+    ResetPaddles();
+}
+
 void Pong::Update(float deltaTime) {
     m_BallPos += m_BallVelocity * deltaTime;
 

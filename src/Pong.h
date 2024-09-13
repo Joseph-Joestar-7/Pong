@@ -53,6 +53,7 @@ public:
     int sc1, sc2;
 
 	void Init();
+    void Restart();
 	void Update(float deltaTime); 
     
 	void Render();    
