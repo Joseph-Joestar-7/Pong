@@ -1,6 +1,5 @@
 #include "Renderer.h"
 #include <iostream>
-#include <vector>
 #include <cmath>
 #include "Pong.h"
 #include <glm/ext/matrix_clip_space.hpp>
@@ -83,3 +82,19 @@ void Pong::Render()
     m_Renderer->draw(m_VAO, *m_IBO, *m_Shader, GL_TRIANGLES);
 
 }
+
+void Pong::ProcessInput(float deltaTime) {
+    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_W) == GLFW_PRESS) {
+        m_PaddleLeftPos.y += m_PaddleSpeed * deltaTime;
+    }
+    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S) == GLFW_PRESS) {
+        m_PaddleLeftPos.y -= m_PaddleSpeed * deltaTime;
+    }
+    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_UP) == GLFW_PRESS) {
+        m_PaddleRightPos.y += m_PaddleSpeed * deltaTime;
+    }
+    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_DOWN) == GLFW_PRESS) {
+        m_PaddleRightPos.y -= m_PaddleSpeed * deltaTime;
+    }
+}
+

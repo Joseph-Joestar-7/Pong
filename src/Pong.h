@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "Shader.h"
+#include "GLFW/glfw3.h"
 #include <glm/glm.hpp>
 #include "VertexArray.h"
 #include "IndexBuffer.h"
