@@ -4,6 +4,7 @@
 #include <cmath>
 #include "Pong.h"
 #include <glm/ext/matrix_clip_space.hpp>
+#include <glm/gtx/transform.hpp>
 
 Pong::Pong()
 	:m_PaddleLeftPos(glm::vec3(-0.9f, 0.0f, 0.0f)),
@@ -63,4 +64,11 @@ void Pong::Render()
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
     m_Shader->bind();
+
+    glm::mat4 modelLeft = glm::translate(glm::mat4(1.0f), m_PaddleLeftPos);
+    m_Shader->setUniformMat4f("u_Model", modelLeft);
+    m_Shader->setUniform4f("uColor", 1.0f, 0.0f, 0.0f, 1.0f); // Red color
+    m_VAO.bind();
+    m_IBO->Bind();
+    m_Renderer->draw(m_VAO,*m_IBO, *m_Shader, GL_TRIANGLES);
 }
