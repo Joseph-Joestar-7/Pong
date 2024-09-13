@@ -111,6 +111,7 @@ void Pong::Render()
 
     glm::mat4 modelBall = glm::translate(glm::mat4(1.0f), m_BallPos);
     m_Shader->setUniformMat4f("u_Model", modelBall);
+    m_Shader->setUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f); // White color
     m_BallVAO.bind();
     m_BallIBO->Bind();
     m_Renderer->draw(m_BallVAO, *m_BallIBO, *m_Shader, GL_TRIANGLES);
