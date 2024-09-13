@@ -49,8 +49,10 @@ public:
 
     std::string p1, p2, winner;
     int sc1, sc2;
+
 	void Init();
 	void Update(float deltaTime); 
+    
 	void Render();    
 	void ProcessInput(float deltaTime); 
 };

@@ -33,6 +33,16 @@ int main(void)
     if (glewInit() != GLEW_OK)
         std::cout << "Error" << std::endl;
     Pong pong;
+
+    std::cout << "Enter the Name of the First Player\n";
+    std::string a;
+    std::cin >> a;
+    pong.p1 = a;
+
+    std::cout << "Enter the Name of the Second Player\n";
+    std::cin >> a;
+    pong.p2 = a;
+
     float lastTime = (float)glfwGetTime();
 
     /* Loop until the user closes the window */
