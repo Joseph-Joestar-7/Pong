@@ -1,6 +1,4 @@
 #include "Renderer.h"
-#include <iostream>
-#include <cmath>
 #include "Pong.h"
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/gtx/transform.hpp>
@@ -48,7 +46,7 @@ void Pong::Init()
 
     m_VAO.bind();
 
-    m_Shader = new Shader("res/shaders/Basic.shader");
+    m_Shader = new Shader("res/Basic.shader");
     m_Shader->bind();
     m_Shader->setUniformMat4f("u_Projection", m_Projection);
     m_Shader->setUniformMat4f("u_View", m_View);
@@ -56,6 +54,12 @@ void Pong::Init()
     ResetBall();
     ResetPaddles();
 
+}
+
+void Pong::Update(float deltaTime) {
+    m_BallPos += m_BallVelocity * deltaTime;
+
+    CheckCollisions();
 }
 
 void Pong::Render() 
@@ -106,6 +110,11 @@ void Pong::ResetBall() {
 void Pong::ResetPaddles() {
     m_PaddleLeftPos = glm::vec3(-0.9f, 0.0f, 0.0f);
     m_PaddleRightPos = glm::vec3(0.9f, 0.0f, 0.0f);
+}
+
+void Pong::CheckCollisions()
+{
+
 }
 
 

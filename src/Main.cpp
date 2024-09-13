@@ -33,13 +33,20 @@ int main(void)
     if (glewInit() != GLEW_OK)
         std::cout << "Error" << std::endl;
     Pong pong;
+    float lastTime = (float)glfwGetTime();
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
+        float currentTime = (float)glfwGetTime();
+        float deltaTime = currentTime - lastTime;
+        lastTime = currentTime;
+
         /* Render here */
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
+        pong.ProcessInput(deltaTime);
+        pong.Update(deltaTime);
         pong.Render();
-
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
