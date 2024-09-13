@@ -109,6 +109,7 @@ void Pong::Render()
 
     if (m_GameOver) {
         std::cout << "The winner is " << winner << "\n";
+        std::cout << "Press Enter to continue playing\n";
         return; 
     }
 
