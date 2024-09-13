@@ -8,7 +8,8 @@ Pong::Pong()
     m_PaddleRightPos(glm::vec3(0.9f, 0.0f, 0.0f)),
     m_BallPos(glm::vec3(0.0f, 0.0f, 0.0f)),
     m_BallVelocity(glm::vec3(0.5f, 0.5f, 0.0f)),
-    m_PaddleSpeed(1.0f)
+    m_PaddleSpeed(1.0f),
+    sc1(0),sc2(0),m_GameOver(false)
 {
     m_Projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
     m_View = glm::mat4(1.0f);
@@ -119,17 +120,22 @@ void Pong::Render()
 }
 
 void Pong::ProcessInput(float deltaTime) {
-    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_W) == GLFW_PRESS) {
-        m_PaddleLeftPos.y += m_PaddleSpeed * deltaTime;
-    }
-    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S) == GLFW_PRESS) {
-        m_PaddleLeftPos.y -= m_PaddleSpeed * deltaTime;
-    }
-    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_UP) == GLFW_PRESS) {
-        m_PaddleRightPos.y += m_PaddleSpeed * deltaTime;
-    }
-    if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_DOWN) == GLFW_PRESS) {
-        m_PaddleRightPos.y -= m_PaddleSpeed * deltaTime;
+
+
+    if (!m_GameOver)
+    {
+        if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_W) == GLFW_PRESS) {
+            m_PaddleLeftPos.y += m_PaddleSpeed * deltaTime;
+        }
+        if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_S) == GLFW_PRESS) {
+            m_PaddleLeftPos.y -= m_PaddleSpeed * deltaTime;
+        }
+        if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_UP) == GLFW_PRESS) {
+            m_PaddleRightPos.y += m_PaddleSpeed * deltaTime;
+        }
+        if (glfwGetKey(glfwGetCurrentContext(), GLFW_KEY_DOWN) == GLFW_PRESS) {
+            m_PaddleRightPos.y -= m_PaddleSpeed * deltaTime;
+        }
     }
 }
 
@@ -171,15 +177,17 @@ void Pong::CheckCollisions()
 
     // Ball out of bounds on the left (score for right player)
     if (m_BallPos.x - 0.05f <= -1.0f) {
-        // Reset the ball after scoring
+        sc2++;
         ResetBall();
     }
 
     // Ball out of bounds on the right (score for left player)
     if (m_BallPos.x + 0.05f >= 1.0f) {
-        // Reset the ball after scoring
+        sc1++;
         ResetBall();
     }
+    
+
 }
 
 

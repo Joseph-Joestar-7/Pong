@@ -37,6 +37,8 @@ private:
     glm::mat4 m_Projection;
     glm::mat4 m_View;
 
+    bool m_GameOver;
+
     // Reset the Ball and Paddles
     void ResetBall();
     void ResetPaddles();
