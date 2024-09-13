@@ -44,7 +44,7 @@ int main(void)
     pong.p2 = a;
 
     // Delay for 5 seconds before starting the game
-    std::cout << "The game will begin in 5 seconds..." << std::endl;
+    std::cout << "The game will begin in 5 seconds...\nBetter Get READY\n";
 
     float startTime = (float)glfwGetTime();  // Record the start time
     while ((float)glfwGetTime() - startTime < 5.0f) {

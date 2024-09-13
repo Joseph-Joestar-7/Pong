@@ -210,8 +210,6 @@ void Pong::CheckCollisions()
         m_GameOver = true;
         winner = (sc1 == 3) ? p1 : p2;
     }
-    
-
 }
 
 
