@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "Pong.h"
 #include "Renderer.h"
 
 int main(void)
