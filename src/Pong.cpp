@@ -25,7 +25,6 @@ Pong::~Pong()
 void Pong::Init()
 {
     float positions[] = {
-        // Paddle vertices
         -0.05f, -0.2f, 0.0f, // Bottom-left
          0.05f, -0.2f, 0.0f, // Bottom-right
          0.05f,  0.2f, 0.0f, // Top-right
@@ -36,6 +35,31 @@ void Pong::Init()
        0, 1, 2, // First triangle
        2, 3, 0  // Second triangle
     };
+
+    // Approximation of a circle for the ball
+    const int numSegments = 30; // Higher number for smoother circle
+    float ballPositions[(numSegments + 2) * 3]; // +2 for center and duplicate vertex
+
+    // Center vertex of the circle
+    ballPositions[0] = 0.0f; // X
+    ballPositions[1] = 0.0f; // Y
+    ballPositions[2] = 0.0f; // Z
+
+    float angleStep = 2.0f * 3.14159f / numSegments;
+
+    for (int i = 1; i <= numSegments + 1; i++) {
+        float angle = (i - 1) * angleStep;
+        ballPositions[i * 3] = 0.05f * cos(angle); // X
+        ballPositions[i * 3 + 1] = 0.05f * sin(angle); // Y
+        ballPositions[i * 3 + 2] = 0.0f;              // Z
+    }
+
+    unsigned int ballIndices[numSegments * 3];
+    for (int i = 0; i < numSegments; i++) {
+        ballIndices[i * 3] = 0;           // Center vertex
+        ballIndices[i * 3 + 1] = i + 1;   // Current outer vertex
+        ballIndices[i * 3 + 2] = i + 2;   // Next outer vertex
+    }
 
     m_VBO = new VertexBuffer(positions, sizeof(positions));
     m_IBO = new IndexBuffer(indices, 6);
