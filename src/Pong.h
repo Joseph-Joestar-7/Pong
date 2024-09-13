@@ -7,6 +7,8 @@
 #include "Shader.h"
 #include "VertexBufferLayout.h"
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 class Pong
 {
 private:

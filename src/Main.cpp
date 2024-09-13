@@ -32,13 +32,13 @@ int main(void)
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK)
         std::cout << "Error" << std::endl;
-
+    Pong pong;
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
-
+        pong.Render();
 
 
         /* Swap front and back buffers */
