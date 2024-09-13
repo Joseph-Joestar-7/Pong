@@ -16,7 +16,7 @@ private:
     VertexArray m_VAO;
     VertexBuffer* m_VBO;
     IndexBuffer* m_IBO;
-    VertexBuffer* m_BllVBO;
+    VertexBuffer* m_BallVBO;
     IndexBuffer* m_BallIBO;
     Shader* m_Shader;
     Renderer* m_Renderer;
