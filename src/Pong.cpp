@@ -145,7 +145,41 @@ void Pong::ResetPaddles() {
 
 void Pong::CheckCollisions()
 {
+    // Ball and top/bottom wall collisions
+    if (m_BallPos.y + 0.05f >= 1.0f || m_BallPos.y - 0.05f <= -1.0f) {
+        // Invert the Y velocity if the ball hits the top or bottom wall
+        m_BallVelocity.y = -m_BallVelocity.y;
+    }
 
+    // Ball and left paddle collision
+    if (m_BallPos.x - 0.05f <= -0.9f &&
+        m_BallPos.y < m_PaddleLeftPos.y + 0.2f &&
+        m_BallPos.y > m_PaddleLeftPos.y - 0.2f) {
+
+        // Invert the X velocity when the ball hits the left paddle
+        m_BallVelocity.x = -m_BallVelocity.x;
+    }
+
+    // Ball and right paddle collision
+    if (m_BallPos.x + 0.05f >= 0.9f &&
+        m_BallPos.y < m_PaddleRightPos.y + 0.2f &&
+        m_BallPos.y > m_PaddleRightPos.y - 0.2f) {
+
+        // Invert the X velocity when the ball hits the right paddle
+        m_BallVelocity.x = -m_BallVelocity.x;
+    }
+
+    // Ball out of bounds on the left (score for right player)
+    if (m_BallPos.x - 0.05f <= -1.0f) {
+        // Reset the ball after scoring
+        ResetBall();
+    }
+
+    // Ball out of bounds on the right (score for left player)
+    if (m_BallPos.x + 0.05f >= 1.0f) {
+        // Reset the ball after scoring
+        ResetBall();
+    }
 }
 
 
