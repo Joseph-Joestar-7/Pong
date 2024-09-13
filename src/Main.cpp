@@ -26,6 +26,7 @@ int main(void)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK)
