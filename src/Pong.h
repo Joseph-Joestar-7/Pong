@@ -7,6 +7,7 @@
 #include "VertexBuffer.h"
 #include "Shader.h"
 #include "VertexBufferLayout.h"
+#include <string>
 
 #define GLM_ENABLE_EXPERIMENTAL
 
@@ -46,6 +47,8 @@ public:
 	Pong();
 	~Pong();
 
+    std::string p1, p2, winner;
+    int sc1, sc2;
 	void Init();
 	void Update(float deltaTime); 
 	void Render();    
