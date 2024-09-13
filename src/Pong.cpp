@@ -68,6 +68,11 @@ void Pong::Init()
     layout.push<float>(3);
     m_VAO.addBuffer(*m_VBO, layout);
 
+    m_BallVBO = new VertexBuffer(ballPositions, sizeof(ballPositions));
+    m_BallIBO = new IndexBuffer(ballIndices, numSegments * 3);
+
+    m_BallVAO.addBuffer(*m_BallVBO, layout);
+
     m_VAO.bind();
 
     m_Shader = new Shader("res/Basic.shader");

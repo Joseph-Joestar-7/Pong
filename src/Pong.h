@@ -14,6 +14,7 @@ class Pong
 {
 private:
     VertexArray m_VAO;
+    VertexArray m_BallVAO;
     VertexBuffer* m_VBO;
     IndexBuffer* m_IBO;
     VertexBuffer* m_BallVBO;
